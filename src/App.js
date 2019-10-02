@@ -33,15 +33,16 @@ class App extends Component {
     )
   }
 
-  onAddItem = (newItem) => {
+  onAddItem = (e, newItem) => {
+    e.preventDefault()
     this.setState({ list: [...this.state.list, newItem] })
   }
 
   render() {
     return (
       <div>
-        <TodoForm onClick={this.onAddItem} />
-        <TodoList list={this.state.list} onClick={this.onComplete} />
+        <TodoForm onAddItem={this.onAddItem} />
+        <TodoList list={this.state.list} onComplete={this.onComplete} />
       </div>
     )
   }
