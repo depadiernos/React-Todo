@@ -38,10 +38,13 @@ class App extends Component {
 
   onComplete = (event, id) => {
     console.log(id)
-    this.setState({list:this.state.list.map((item) => {
+    this.setState({
+      list: this.state.list.map((item) => {
         if (item.id === id) {
-          return {...item, completed: !item.completed} 
-        } else {return item}
+          return { ...item, completed: !item.completed }
+        } else {
+          return item
+        }
       })
     })
   }
@@ -53,13 +56,25 @@ class App extends Component {
     }
   }
 
+  clearComplete = () => {
+    this.setState({
+      list: this.state.list.filter((item) => {
+        if (item.completed === false) {
+          return item
+        } else {
+          return null
+        }
+      })
+    })
+  }
+
   render() {
     return (
       <Style>
         <h1>Todo List</h1>
         <TodoList list={this.state.list} onComplete={this.onComplete} />
         <TodoForm onAddItem={this.onAddItem} />
-        <Complete>Clear Completed</Complete>
+        <Complete onClick={this.clearComplete}>Clear Completed</Complete>
       </Style>
     )
   }
