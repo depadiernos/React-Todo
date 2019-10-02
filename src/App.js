@@ -1,7 +1,22 @@
-import React, {Component} from "react"
-
+import React, { Component } from "react"
+import styled from "styled-components"
 import TodoList from "components/TodoComponents/TodoList"
 import TodoForm from "components/TodoComponents/TodoForm"
+
+const Style = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+`
+
+const Complete = styled.button`
+    background-color: white;
+    border: 1px black solid;
+    height: 2.4rem;
+    margin: 1rem;
+  
+`
 
 class App extends Component {
   constructor() {
@@ -35,15 +50,17 @@ class App extends Component {
 
   onAddItem = (e, newItem) => {
     e.preventDefault()
-    this.setState({ list: [...this.state.list, newItem] })
+    if(newItem.task) {this.setState({ list: [...this.state.list, newItem] })}
   }
 
   render() {
     return (
-      <div>
-        <TodoForm onAddItem={this.onAddItem} />
+      <Style>
+        <h1>Todo List</h1>
         <TodoList list={this.state.list} onComplete={this.onComplete} />
-      </div>
+        <TodoForm onAddItem={this.onAddItem} />
+        <Complete>Clear Completed</Complete>
+      </Style>
     )
   }
 }
