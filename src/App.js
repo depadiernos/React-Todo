@@ -24,6 +24,7 @@ class App extends Component {
 
   onComplete = (event, id) => {
     this.setState(
+      // eslint-disable-next-line
       this.state.list.map((item) => {
         if (item.id === id) {
           item.completed = !item.completed
