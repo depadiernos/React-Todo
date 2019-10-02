@@ -7,7 +7,7 @@ const Style = styled.div`
   margin: 10px;
   border: 1px black solid;
   border-radius: 5px;
-  max-width: 200px;
+  min-width: 230px;
   justify-content: center;
   button {
     background-color: white;
