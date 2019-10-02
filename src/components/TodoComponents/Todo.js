@@ -5,21 +5,25 @@ const Style = styled.div`
   display: flex;
   padding: 10px;
   margin: 10px;
-  border: 1px black solid;
   border-radius: 5px;
   min-width: 230px;
   justify-content: center;
-  button {
-    background-color: white;
+  ${(props) =>
+    props.item.completed ? `
+    background: lightgray;
+    border: 1px lightgray solid;
+    color: white;
+    ` : `
+    background:white;
     border: 1px black solid;
-    border-radius: 3px;
-  }
+    color: black;
+    `}
 `
 
 export default function Todo(props) {
   return (
-    <Style onClick={(e)=>props.onComplete(props.key)}>
-      {props.item}
+    <Style item={props.item} onClick={props.onComplete}>
+      {props.item.task}
     </Style>
   )
 }

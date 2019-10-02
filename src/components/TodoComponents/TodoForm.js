@@ -16,7 +16,7 @@ const Style = styled.form`
 class TodoForm extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {id:'',completed: false, task:''}
   }
 
   onChange = (e) => {

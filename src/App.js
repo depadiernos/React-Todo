@@ -11,11 +11,10 @@ const Style = styled.div`
 `
 
 const Complete = styled.button`
-    background-color: white;
-    border: 1px black solid;
-    height: 2.4rem;
-    margin: 1rem;
-  
+  background-color: white;
+  border: 1px black solid;
+  height: 2.4rem;
+  margin: 1rem;
 `
 
 class App extends Component {
@@ -38,19 +37,20 @@ class App extends Component {
   }
 
   onComplete = (event, id) => {
-    this.setState(
-      // eslint-disable-next-line
-      this.state.list.map((item) => {
+    console.log(id)
+    this.setState({list:this.state.list.map((item) => {
         if (item.id === id) {
-          item.completed = !item.completed
-        }
+          return {...item, completed: !item.completed} 
+        } else {return item}
       })
-    )
+    })
   }
 
   onAddItem = (e, newItem) => {
     e.preventDefault()
-    if(newItem.task) {this.setState({ list: [...this.state.list, newItem] })}
+    if (newItem.task) {
+      this.setState({ list: [...this.state.list, newItem] })
+    }
   }
 
   render() {
