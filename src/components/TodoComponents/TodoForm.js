@@ -1,9 +1,10 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 
-const Style = styled.div`
+const Style = styled.form`
   input {
     height: 2rem;
+    padding-left: 1rem;
   }
   button {
     background-color: white;
@@ -23,19 +24,21 @@ class TodoForm extends Component {
     this.setState({
       id: Date.now(),
       completed: false,
-      [e.target.name]: e.target.value
+      task: e.target.value
     })
+  }
+
+  onSubmit = (e) => {
+    e.preventDefault()
+    this.props.onAddItem(e, this.state)
+    this.setState({ task: "" })
   }
 
   render() {
     return (
-      <Style>
-        <form>
-          <input name="task" type="text" onChange={(e) => this.onChange(e)} />
-          <button onClick={(e) => this.props.onAddItem(e, this.state)}>
-            Add Item
-          </button>
-        </form>
+      <Style onSubmit={(e) => this.onSubmit(e)}>
+        <input name="task" type="text" onChange={(e) => this.onChange(e)} value={this.state.task}/>
+        <button>Add Item</button>
       </Style>
     )
   }
