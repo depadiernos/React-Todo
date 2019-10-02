@@ -1,7 +1,25 @@
-import React from 'react';
+import React from "react"
+import styled from "styled-components"
 
-function Todo(props){
+const Style = styled.div`
+  display: flex;
+  padding: 10px;
+  margin: 10px;
+  border: 1px black solid;
+  border-radius: 5px;
+  max-width: 200px;
+  justify-content: center;
+  button {
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 3px;
+  }
+`
+
+export default function Todo(props) {
   return (
-    <div>{props.item}</div>
+    <Style onClick={(e)=>props.onComplete(props.key)}>
+      {props.item}
+    </Style>
   )
 }
